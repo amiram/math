@@ -1,0 +1,33 @@
+<html>
+
+<head>
+    <script>
+        const n1 = parseInt(prompt("Enter a number"));
+
+        if (n1 < 0) {
+            alert("negetive");
+        } else {
+            if (n1 >= 0 && n1 <= 100) {
+                alert("between 0 and 100");
+            } else {
+                alert("more than 100");
+            }
+        }
+
+        let notok = true;
+
+        while (notok) {
+            const n2 = parseInt(prompt("Enter an odd number"));
+
+            if (n2 % 2 === 1) {
+                alert("ok");
+                notok = false;
+            } else {
+                alert("not ok");
+            }
+        }
+
+    </script>
+</head>
+
+</html>

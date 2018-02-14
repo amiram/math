@@ -10,18 +10,27 @@
 
         let x;
         let y;
+        let op;
+        let wrong = 0;
+        let right = 0;
 
         function showQuestion() {
+            document.getElementById("answer").value = "";
+
             const level = document.getElementById('level').value;
             let min = 10 ** (level - 1);
             let max = 10 ** level;
 
-            const op = document.getElementById('operator').value;
+            op = document.getElementById('operator').value;
 
             x = random(min, max);
             y = random(min, max);
 
             document.getElementById('question').innerHTML = x + op + y + '=';
+        }
+
+        function showSummary() {
+            document.getElementById("summary").innerHTML = "Right: " + right + ". Wrong: " + wrong;
         }
 
         function checkAnswer() {
@@ -37,7 +46,19 @@
                 result = x / y;
             }
 
+            const answer = parseInt(document.getElementById("answer").value);
             
+            let message;
+            if (answer === result) {
+                message = "correct";
+                right++;
+            } else {
+                message = "wrong. answer is: " + result;
+                wrong++;
+            }
+
+            document.getElementById("result").innerHTML = message;
+            showSummary();
         }
     </script>
 </head>
@@ -65,11 +86,17 @@
     </div>
     <div>
         <span id="question"></span>
-        <input type="number" />
+        <input type="number" id="answer" />
     </div>
     <div>
-        <button onclick="checkAnswer()">ok</button>
-        <button>next</button>
+        <button onclick="checkAnswer();showQuestion()">ok</button>
+        <button onclick="showQuestion()">next</button>
+    </div>
+    <div>
+        <span id="result"></span>
+    </div>
+    <div>
+        <span id="summary"></span>
     </div>
 </body>
 
